@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.judy.self.regulation.fragment.MainFragment"
+        android:label="@string/homeScreen"
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/healthFragment"
+        android:name="com.judy.self.regulation.fragment.HealthFragment"
+        android:label="@string/healthScreen"
+        tools:layout="@layout/fragment_health" />
+    <fragment
+        android:id="@+id/workFragment"
+        android:name="com.judy.self.regulation.fragment.WorkFragment"
+        android:label="@string/workScreen"
+        tools:layout="@layout/fragment_work" />
+    <fragment
+        android:id="@+id/stressFragment"
+        android:name="com.judy.self.regulation.fragment.StressFragment"
+        android:label="@string/stressScreen"
+        tools:layout="@layout/fragment_stress" />
+</navigation>
