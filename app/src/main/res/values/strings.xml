@@ -10,6 +10,9 @@
     <string name="workScreen">工作</string>
     <string name="stressScreen">壓力</string>
     <string name="defaultNumber">80</string>
-    <string name="statusScore">今日狀態分數</string>
-
+    <string name="defaultNumberUnit">分</string>
+    <string name="statusScore">今日狀態</string>
+    <string name="firstRank">01</string>
+    <string name="secondRank">02</string>
+    <string name="thirdRank">03</string>
 </resources>
