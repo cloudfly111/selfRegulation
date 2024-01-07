@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.judy.self.regulation.R
 import com.judy.self.regulation.MainViewModel
+import com.judy.self.regulation.databinding.FragmentLoginBinding
+import com.judy.self.regulation.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
@@ -15,13 +17,17 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
+    private lateinit var binding: FragmentMainBinding
+
     private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        //set fragment view-binding
+        binding = FragmentMainBinding.inflate(layoutInflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

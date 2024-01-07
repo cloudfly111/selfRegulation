@@ -6,15 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.judy.self.regulation.R
+import com.judy.self.regulation.databinding.ActivityMainBinding
+import com.judy.self.regulation.databinding.FragmentHealthBinding
 
 class HealthFragment : Fragment() {
+
+    private lateinit var binding: FragmentHealthBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_health, container, false)
+        //set fragment view-binding
+        binding = FragmentHealthBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     companion object {
