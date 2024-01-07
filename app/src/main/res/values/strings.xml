@@ -9,6 +9,7 @@
     <string name="healthScreen">健康</string>
     <string name="workScreen">工作</string>
     <string name="stressScreen">壓力</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="defaultNumber">80</string>
+    <string name="statusScore">今日狀態分數</string>
+
 </resources>
