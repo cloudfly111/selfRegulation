@@ -73,6 +73,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/message" />
+    <TextView
+        android:id="@+id/titleTextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="left"
+        android:text="@string/rankTitle"
+        android:textColor="@color/dark_brown"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/rankList"
+        app:layout_constraintBottom_toTopOf="@id/rankList" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rankList"

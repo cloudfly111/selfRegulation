@@ -12,7 +12,15 @@
     <string name="defaultNumber">80</string>
     <string name="defaultNumberUnit">分</string>
     <string name="statusScore">今日狀態</string>
-    <string name="firstRank">01</string>
-    <string name="secondRank">02</string>
-    <string name="thirdRank">03</string>
+    <string name="rankTitle">由影響目前狀態的大小排序</string>
+    <string-array name="rankArray">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+    </string-array>
+    <string-array name="categoryArray">
+        <item>健康</item>
+        <item>工作</item>
+        <item>壓力</item>
+    </string-array>
 </resources>
