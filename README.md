@@ -14,3 +14,10 @@
 ## 預計頁面功能流程
 ![App架構規劃_20231223](https://github.com/cloudfly111/selfRegulation/assets/37395516/389ef5e9-56c2-43e5-9e40-15b150b8708e)
 
+## 目前進度 demo 影片
+
+
+https://github.com/cloudfly111/selfRegulation/assets/37395516/a208cc9a-1d7d-42dc-9580-7931e8803666
+
+
+
