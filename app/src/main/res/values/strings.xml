@@ -23,4 +23,5 @@
         <item>工作</item>
         <item>壓力</item>
     </string-array>
+    <string name="defaultStatusMessage">最近的你狀態很好!</string>
 </resources>
