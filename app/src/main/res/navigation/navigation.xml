@@ -24,4 +24,5 @@
         android:name="com.judy.self.regulation.fragment.StressFragment"
         android:label="@string/stressScreen"
         tools:layout="@layout/fragment_stress" />
+
 </navigation>

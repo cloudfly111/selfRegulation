@@ -1,7 +1,9 @@
 package com.judy.self.regulation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -10,6 +12,7 @@ import com.judy.self.regulation.fragment.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
+    private var isInitial: Boolean = false
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +29,9 @@ class MainActivity : AppCompatActivity() {
         if (navController != null) {
             binding.navigationView.setupWithNavController(navController)
         }
-
+        //初次進入顯示歡迎頁
+        if(!isInitial)startActivity(Intent(this,WelcomeActivity::class.java))
+        isInitial = true
     }
 
 }

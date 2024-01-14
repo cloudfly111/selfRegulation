@@ -9,6 +9,7 @@
     <string name="healthScreen">健康</string>
     <string name="workScreen">工作</string>
     <string name="stressScreen">壓力</string>
+    <string name="welcomeScreen">歡迎</string>
     <string name="defaultNumber">80</string>
     <string name="defaultNumberUnit">分</string>
     <string name="statusScore">今日狀態</string>
