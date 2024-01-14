@@ -16,6 +16,7 @@ import com.judy.self.regulation.databinding.DialogStatusBinding
 import com.judy.self.regulation.databinding.FragmentLoginBinding
 import com.judy.self.regulation.databinding.FragmentMainBinding
 import com.judy.self.regulation.dialog.StatusDialog
+import com.judy.self.regulation.model.LocalModel
 
 class MainFragment : Fragment() {
 
@@ -49,27 +50,13 @@ class MainFragment : Fragment() {
             }
         }
 
-        val list = setListData()
+        val list = LocalModel.setMainListData(rankArray = resources.getStringArray(R.array.rankArray), categoryArray = resources.getStringArray(R.array.categoryArray))
         val adapter = MainScreenAdapter(list)
         adapter.notifyDataSetChanged()
         binding.rankList.apply {
             this.layoutManager = LinearLayoutManager(context)
             this.adapter = adapter
         }
-    }
-
-    fun setListData(): MutableList<MutableMap<String, String>> {
-        val RANK_KEY: String = "RANK"
-        val TITLE_Key: String = "TITLE"
-        val rankArray = resources.getStringArray(R.array.rankArray)
-        val categoryArray = resources.getStringArray(R.array.categoryArray)
-        val list = MutableList<MutableMap<String, String>>(3) { index: Int ->
-            val mapData = mutableMapOf<String, String>()
-            mapData.put(RANK_KEY, rankArray.get(index).toString())
-            mapData.put(TITLE_Key, categoryArray.get(index).toString())
-            mapData
-        }
-        return list
     }
 
     fun showDialog(isShow: Boolean) {
