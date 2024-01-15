@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.judy.self.regulation.R
 import com.judy.self.regulation.MainViewModel
@@ -17,6 +18,10 @@ import com.judy.self.regulation.databinding.FragmentLoginBinding
 import com.judy.self.regulation.databinding.FragmentMainBinding
 import com.judy.self.regulation.dialog.StatusDialog
 import com.judy.self.regulation.model.LocalModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainFragment : Fragment() {
 
@@ -41,6 +46,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         var isShowDialog : Boolean = false
+
         viewModel.isOpenStatusLiveData.observe(this.viewLifecycleOwner, Observer {
             isShowDialog = it
         })
@@ -50,12 +56,9 @@ class MainFragment : Fragment() {
             }
         }
 
-        val list = LocalModel.setMainListData(rankArray = resources.getStringArray(R.array.rankArray), categoryArray = resources.getStringArray(R.array.categoryArray))
-        val adapter = MainScreenAdapter(list)
-        adapter.notifyDataSetChanged()
-        binding.rankList.apply {
-            this.layoutManager = LinearLayoutManager(context)
-            this.adapter = adapter
+        viewLifecycleOwner.lifecycleScope.launch {
+            val result = getData()
+            updateListView(result)
         }
     }
 
@@ -63,6 +66,22 @@ class MainFragment : Fragment() {
         val message: String = getString(R.string.defaultStatusMessage)
         val dialog = StatusDialog(this.requireContext(),message)
         if(isShow) dialog.show()
+    }
+
+    //取得 local端資料
+    suspend fun getData() = withContext(Dispatchers.IO){
+        delay(1000)
+        return@withContext LocalModel.setMainListData(activity = requireActivity())
+    }
+
+    //更新首頁 List Data
+    suspend fun updateListView(list:MutableList<MutableMap<String, String>>)= withContext(Dispatchers.Main){
+        val adapter = MainScreenAdapter(list)
+        binding.rankList.apply {
+            this.layoutManager = LinearLayoutManager(context)
+            this.adapter = adapter
+        }
+        adapter.notifyDataSetChanged()
     }
 
 }
