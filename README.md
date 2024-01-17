@@ -14,12 +14,18 @@
 - 本地資料庫：Room
 - 遠端資料庫：FireBase RealtimeDatabase 
 - API 串接：Retrofit
-- 異步處理：Coroutines
+- 異步處理：Coroutines , RxJava
 ## 預計頁面功能流程
 ![App架構規劃_20231223](https://github.com/cloudfly111/selfRegulation/assets/37395516/389ef5e9-56c2-43e5-9e40-15b150b8708e)
 
 ## 目前進度 demo 影片
 
-https://github.com/cloudfly111/selfRegulation/assets/37395516/2749a736-eebc-4747-aafb-dc28e5b2f74a
+- 已使用的套件：
+  - 異步處理：Coroutines , RxJava
+    - Coroutines：首頁 ListView 異步更新
+    - RxJava：歡迎頁倒數計時器
+
+https://github.com/cloudfly111/selfRegulation/assets/37395516/28675b8e-1a1c-4863-adc1-f8fab2d7aff1
+
 
 
