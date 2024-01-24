@@ -18,10 +18,7 @@ import com.judy.self.regulation.databinding.FragmentLoginBinding
 import com.judy.self.regulation.databinding.FragmentMainBinding
 import com.judy.self.regulation.dialog.StatusDialog
 import com.judy.self.regulation.model.LocalModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class MainFragment : Fragment() {
 
@@ -57,7 +54,9 @@ class MainFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            val result = getData()
+            //以異步方式取得本地資料後, 更新UI
+            val dataResult = async {  getData()}
+            val result = dataResult.await()
             updateListView(result)
         }
     }
@@ -70,7 +69,6 @@ class MainFragment : Fragment() {
 
     //取得 local端資料
     suspend fun getData() = withContext(Dispatchers.IO){
-        delay(1000)
         return@withContext LocalModel.setMainListData(activity = requireActivity())
     }
 
