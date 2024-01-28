@@ -9,10 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.judy.self.regulation.R
 import com.judy.self.regulation.MainViewModel
 import com.judy.self.regulation.adapter.MainScreenAdapter
+import com.judy.self.regulation.dataClass.RankData
 import com.judy.self.regulation.databinding.DialogStatusBinding
 import com.judy.self.regulation.databinding.FragmentLoginBinding
 import com.judy.self.regulation.databinding.FragmentMainBinding
@@ -30,6 +32,8 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
 
+    val adapter = MainScreenAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +47,11 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         var isShowDialog : Boolean = false
+
+        binding.rankList.apply {
+            this.layoutManager = LinearLayoutManager(context)
+            this.adapter = this@MainFragment.adapter
+        }
 
         viewModel.isOpenStatusLiveData.observe(this.viewLifecycleOwner, Observer {
             isShowDialog = it
@@ -59,6 +68,19 @@ class MainFragment : Fragment() {
             val result = dataResult.await()
             updateListView(result)
         }
+        var count = 2
+        binding.button.setOnClickListener {
+            count++
+            viewLifecycleOwner.lifecycleScope.launch {
+                val list = async {
+                    val list : MutableList<RankData> = mutableListOf()
+                    for (i in 1..count)  list.add(RankData(rank = "01","工作"))
+                    list
+                }
+                Log.i("MainFragment","list=${list.await()}")
+                withContext(Dispatchers.Main){updateListView(list.await())}
+            }
+        }
     }
 
     fun showDialog(isShow: Boolean) {
@@ -73,13 +95,11 @@ class MainFragment : Fragment() {
     }
 
     //更新首頁 List Data
-    suspend fun updateListView(list:MutableList<MutableMap<String, String>>)= withContext(Dispatchers.Main){
-        val adapter = MainScreenAdapter(list)
-        binding.rankList.apply {
-            this.layoutManager = LinearLayoutManager(context)
-            this.adapter = adapter
-        }
-        adapter.notifyDataSetChanged()
+    suspend fun updateListView(list:MutableList<RankData>)= withContext(Dispatchers.Main){
+        adapter.setListData(list)
     }
+
+
+
 
 }

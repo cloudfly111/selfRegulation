@@ -33,7 +33,7 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //RxJava 計數器
-        val countDownObservable = ObservableInterval(0,5,TimeUnit.SECONDS,Schedulers.io())
+        val countDownObservable = ObservableInterval(0,2,TimeUnit.SECONDS,Schedulers.io())
         val countObserver = object : Observer<Long> {
             override fun onSubscribe(d: Disposable) {
                 Log.i("WelcomeFragment", "onSubscribe")
